@@ -411,7 +411,8 @@ EOF
 
 # Download openshift-ansible playbooks
 echo $(date) " - Cloning Openshift Ansible playbook repository"
-((cd /usr/share/ansible && git clone https://github.com/openshift/openshift-ansible.git) || ((cd /usr/share/ansible/openshift-ansible && git pull))
+
+((cd /usr/share/ansible && git clone https://github.com/openshift/openshift-ansible.git) || (cd /usr/share/ansible/openshift-ansible && git pull))
 
 if [ -d /usr/share/ansible/openshift-ansible ]
 then
