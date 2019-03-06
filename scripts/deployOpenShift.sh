@@ -326,9 +326,9 @@ ansible_ssh_user=$SUDOUSER
 ansible_become=yes
 openshift_install_examples=true
 deployment_type=openshift-enterprise
-openshift_release=v3.9
-#openshift_image_tag=v3.9
-#openshift_pkg_version=-3.9
+openshift_release=v3.10
+#openshift_image_tag=v3.10
+#openshift_pkg_version=-3.10
 docker_udev_workaround=True
 openshift_use_dnsmasq=true
 openshift_master_default_subdomain=$ROUTING
@@ -339,6 +339,11 @@ openshift_master_api_port=443
 openshift_master_console_port=443
 osm_default_node_selector='node-role.kubernetes.io/compute=true'
 openshift_disable_check=memory_availability,docker_image_availability
+openshift_enable_docker_excluder=False
+openshift_enable_openshift_excluder=False
+r_openshift_excluder_enable_docker_excluder=False
+r_openshift_excluder_enable_openshift_excluder=False
+r_openshift_excluder_install_ran=False
 $CLOUDKIND
 $SCKIND
 $CUSTOMCSS
@@ -412,7 +417,7 @@ EOF
 # Download openshift-ansible playbooks
 echo $(date) " - Cloning Openshift Ansible playbook repository"
 
-((cd /usr/share/ansible && git clone https://github.com/openshift/openshift-ansible.git && git checkout release-3.9) || (cd /usr/share/ansible/openshift-ansible && git checkout release-3.9))
+((cd /usr/share/ansible && git clone https://github.com/openshift/openshift-ansible.git && git checkout release-3.10) || (cd /usr/share/ansible/openshift-ansible && git checkout release-3.10))
 
 if [ -d /usr/share/ansible/openshift-ansible ]
 then
