@@ -421,6 +421,7 @@ else
     exit 99
 fi
 
+echo "$AADCLIENTID, $AADCLIENTSECRET, $TENANTID, $SUBSCRIPTIONID"
 # Setup NetworkManager to manage eth0
 echo $(date) " - Running NetworkManager playbook"
 runuser -l $SUDOUSER -c "ansible-playbook -f 30 /usr/share/ansible/openshift-ansible/playbooks/openshift-node/network_manager.yml"
