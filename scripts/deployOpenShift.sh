@@ -409,6 +409,18 @@ $cnsgroup
 [new_nodes]
 EOF
 
+# Download openshift-ansible playbooks
+echo $(date) " - Cloning Openshift Ansible playbook repository"
+((cd /usr/share && git clone https://github.com/openshift/openshift-ansible.git) || ((cd /usr/share/openshift-ansible && git pull))
+
+if [ -d /usr/share/openshift-ansible ]
+then
+    echo " - Retrieved playbooks successfully"
+else
+    echo " - Retrieval of playbooks failed"
+    exit 99
+fi
+
 # Setup NetworkManager to manage eth0
 echo $(date) " - Running NetworkManager playbook"
 runuser -l $SUDOUSER -c "ansible-playbook -f 30 /usr/share/ansible/openshift-ansible/playbooks/openshift-node/network_manager.yml"
