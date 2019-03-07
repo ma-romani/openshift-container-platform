@@ -373,7 +373,7 @@ $MASTERCLUSTERADDRESS
 
 # Enable HTPasswdPasswordIdentityProvider
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
-openshift_master_htpasswd_users={'$SUDOUSER': '8ye2Q3visja4TNgQUaln'}
+
 # Setup metrics
 openshift_metrics_install_metrics=false
 openshift_metrics_start_cluster=true
