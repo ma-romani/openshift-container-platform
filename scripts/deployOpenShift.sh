@@ -178,7 +178,7 @@ echo $(date) " - Creating Master nodes grouping"
 for (( c=0; c<$MASTERCOUNT; c++ ))
 do
     mastergroup="$mastergroup
-$MASTER-$c openshift_hostname=$MASTER-$c openshift_node_group_name='node-config-master'"
+$MASTER-$c openshift_node_group_name='node-config-master'"
 done
 
 # Create Infra nodes grouping 
@@ -186,7 +186,7 @@ echo $(date) " - Creating Infra nodes grouping"
 for (( c=0; c<$INFRACOUNT; c++ ))
 do
     infragroup="$infragroup
-$INFRA-$c openshift_hostname=$INFRA-$c openshift_node_group_name='node-config-infra'"
+$INFRA-$c openshift_node_group_name='node-config-infra'"
 done
 
 # Create Nodes grouping
@@ -194,7 +194,7 @@ echo $(date) " - Creating Nodes grouping"
 for (( c=0; c<$NODECOUNT; c++ ))
 do
     nodegroup="$nodegroup
-$NODE-$c openshift_hostname=$NODE-$c openshift_node_group_name='node-config-compute'"
+$NODE-$c openshift_node_group_name='node-config-compute'"
 done
 
 # Create CNS nodes grouping if CNS is enabled
@@ -324,11 +324,12 @@ new_nodes
 [OSEv3:vars]
 ansible_ssh_user=$SUDOUSER
 ansible_become=yes
+containerized=True
 openshift_install_examples=true
 deployment_type=openshift-enterprise
-openshift_release=v3.9
-openshift_image_tag=v3.9.33
-openshift_pkg_version=-3.9.33
+openshift_release=v3.11
+#openshift_image_tag=v3.9.33
+#openshift_pkg_version=-3.9.0-0.36.0.git.0.8f8b69d.el7
 docker_udev_workaround=True
 openshift_use_dnsmasq=true
 openshift_master_default_subdomain=$ROUTING
@@ -371,8 +372,8 @@ $HAMODE
 $MASTERCLUSTERADDRESS
 
 # Enable HTPasswdPasswordIdentityProvider
-openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
-
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+openshift_master_htpasswd_users={'$SUDOUSER': '8ye2Q3visja4TNgQUaln'}
 # Setup metrics
 openshift_metrics_install_metrics=false
 openshift_metrics_start_cluster=true
@@ -417,7 +418,7 @@ EOF
 # Download openshift-ansible playbooks
 echo $(date) " - Cloning Openshift Ansible playbook repository"
 
-((cd /usr/share/ansible && git clone https://github.com/openshift/openshift-ansible.git && git checkout release-3.9) || (cd /usr/share/ansible/openshift-ansible && git checkout release-3.9))
+((cd /usr/share/ansible && git clone https://github.com/openshift/openshift-ansible.git && git checkout release-3.11) || (cd /usr/share/ansible/openshift-ansible && git checkout release-3.11))
 
 if [ -d /usr/share/ansible/openshift-ansible ]
 then
