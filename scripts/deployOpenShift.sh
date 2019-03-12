@@ -324,7 +324,7 @@ new_nodes
 [OSEv3:vars]
 ansible_ssh_user=$SUDOUSER
 ansible_become=yes
-containerized=True
+#containerized=True
 openshift_install_examples=true
 deployment_type=openshift-enterprise
 openshift_release=v3.11
@@ -340,11 +340,11 @@ openshift_master_api_port=443
 openshift_master_console_port=443
 osm_default_node_selector='node-role.kubernetes.io/compute=true'
 openshift_disable_check=memory_availability,docker_image_availability
-openshift_enable_docker_excluder=False
-openshift_enable_openshift_excluder=False
-r_openshift_excluder_enable_docker_excluder=False
-r_openshift_excluder_enable_openshift_excluder=False
-r_openshift_excluder_install_ran=False
+#openshift_enable_docker_excluder=False
+#openshift_enable_openshift_excluder=False
+#r_openshift_excluder_enable_docker_excluder=False
+#r_openshift_excluder_enable_openshift_excluder=False
+#r_openshift_excluder_install_ran=False
 $CLOUDKIND
 $SCKIND
 $CUSTOMCSS
