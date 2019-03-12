@@ -416,17 +416,17 @@ $cnsgroup
 EOF
 
 # Download openshift-ansible playbooks
-echo $(date) " - Cloning Openshift Ansible playbook repository"
+#echo $(date) " - Cloning Openshift Ansible playbook repository"
 
-((cd /usr/share/ansible && git clone https://github.com/openshift/openshift-ansible.git && git checkout release-3.11) || (cd /usr/share/ansible/openshift-ansible && git checkout release-3.11))
+#((cd /usr/share/ansible && git clone https://github.com/openshift/openshift-ansible.git && git checkout release-3.11) || (cd /usr/share/ansible/openshift-ansible && git checkout release-3.11))
 
-if [ -d /usr/share/ansible/openshift-ansible ]
-then
-    echo " - Retrieved playbooks successfully"
-else
-    echo " - Retrieval of playbooks failed"
-    exit 99
-fi
+#if [ -d /usr/share/ansible/openshift-ansible ]
+#then
+#    echo " - Retrieved playbooks successfully"
+#else
+#    echo " - Retrieval of playbooks failed"
+#    exit 99
+#fi
 
 echo "$AADCLIENTID, $AADCLIENTSECRET, $TENANTID, $SUBSCRIPTIONID"
 # Setup NetworkManager to manage eth0
